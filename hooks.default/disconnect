@@ -1,6 +1,6 @@
 #!/bin/bash -x
 
-ogg123 /usr/share/sounds/freedesktop/stereo/service-logout.oga
+mpg123 -q /opt/bt-speaker/service-logout.mp3
 
 # reenable wifi - TODO: check what permissions bt-speaker might need for this (netdev group?)
 # ifconfig wlan0 up &
