@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/python
 
 from gi.repository import GLib
 from bt_manager.audio import SBCAudioSink
