@@ -7,11 +7,10 @@ A simple Bluetooth Speaker Daemon designed for the Raspberry Pi 3.
 Quick Installation for Raspbian:
 
 ```bash
-sudo -i
-bash <(curl -s https://raw.githubusercontent.com/lukasjapan/bt-speaker/master/install.sh)
+curl -s https://raw.githubusercontent.com/poppypop/bt-speaker/master/install.sh | sudo bash
 ```
 
-For details refer to the comments in the [install script](https://github.com/lukasjapan/bt-speaker/blob/master/install.sh).
+For details refer to the comments in the [install script](https://github.com/poppypop/bt-speaker/blob/master/install.sh).
 
 Depending on your application, you might also want to send all audio to the headphone jack.
 This can be done by `raspi-config`:
@@ -41,6 +40,7 @@ Section | Key | Default Value | Description
 bt_speaker | play_command | aplay -f cd - | The raw audio in CD Format (16bit little endian, 44100Hz, stereo) is piped to this command.
 bt_speaker | connect_command | /etc/bt_speaker/hooks/connect | Command that is called when an audio device connects to BT-Speaker
 bt_speaker | disconnect_command | /etc/bt_speaker/hooks/disconnect | Command that is called when an audio device disconnects from BT-Speaker
+bt_speaker | sound_system | alsa | alsa: To output to alsa, everything else, to use custom solution (eg pulse)
 bluez | device_path | /org/bluez/hci0 | The DBUS path where BT-Speaker can find the bluetooth device
 bluez | discoverable | yes | Specifies if the raspberry pi should advertise itself if no client is connected.
 alsa | enabled | yes | Enables volume control via alsamixer
