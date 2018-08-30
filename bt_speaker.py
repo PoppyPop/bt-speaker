@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 from gi.repository import GLib
 from bt_manager.audio import SBCAudioSink
@@ -140,16 +140,19 @@ class AutoAcceptSingleAudioAgent(BTAgent):
             self.disconnect_callback()
 
 def setup_bt():
-    # register sink and media endpoint
-    sink = PipedSBCAudioSinkWithAlsaVolumeControl()
-    media = BTMedia(config.get('bluez', 'device_path'))
-    media.register_endpoint(sink._path, sink.get_properties())
+	
+    if config.get('bt_speaker', 'sound_system')=="alsa":
+        # register sink and media endpoint
+        sink = PipedSBCAudioSinkWithAlsaVolumeControl()
+        media = BTMedia(config.get('bluez', 'device_path'))
+        media.register_endpoint(sink._path, sink.get_properties())
 
     def connect():
         subprocess.Popen(config.get('bt_speaker', 'connect_command'), shell=True).communicate()
 
     def disconnect():
-        sink.close_transport()
+        if sink is not None:
+            sink.close_transport()
         subprocess.Popen(config.get('bt_speaker', 'disconnect_command'), shell=True).communicate()
 
     # setup bluetooth agent (that manages connections of devices)
