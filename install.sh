@@ -5,7 +5,7 @@ set -e
 
 echo "Installing dependencies..."
 apt-get update
-apt-get --yes --force-yes install git bluez python3 python3-gi python3-cffi python3-pyalsa python3-dbus python3-configparser mpg123
+apt-get --yes --force-yes install git bluez python3 python3-gi python3-pip mpg123
 echo "done."
 
 # Add btspeaker user if not exist already
